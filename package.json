@@ -7,7 +7,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "generate-syncano-apis": "sh bin/gen_socket_apis.sh",
-    "start": "npm run generate-syncano-apis && webpack-dev-server --mode development --hot --progress --color --port 3000 --open",
+    "start":
+      "npm run generate-syncano-apis && webpack-dev-server --mode development --hot --progress --color --port 3000 --open",
     "build": "webpack -p --progress --colors",
     "prettier": "prettier --write \"src/**/*.{ts,tsx,css}\""
   },
@@ -49,7 +50,7 @@
   },
   "dependencies": {
     "@aexol/slothking-diagram": "^0.1.3",
-    "@aexol/slothking-form": "^0.1.3",
+    "@aexol/slothking-form": "^0.1.4",
     "@syncano/client": "^0.8.0",
     "classnames": "^2.2.5",
     "js-cookie": "^2.2.0",
@@ -65,27 +66,8 @@
     "utility-types": "^1.1.0"
   },
   "syncano": {
-    "instance": "dawn-hill-4437",
-    "app": "czynne24",
-    "apiJs": "src/syncano/generator/generated.ts",
-    "rest": {
-      "models": [
-        {
-          "name": "propertytype",
-          "display": "name"
-        },
-        {
-          "name": "services",
-          "display": "title",
-          "exclude": [
-            "locations",
-            "region",
-            "property_types",
-            "status",
-            "geo_location"
-          ]
-        }
-      ]
-    }
+    "instance": "instance-syncano-name",
+    "app": "app-name",
+    "apiJs": "src/syncano/generator/generated.ts"
   }
 }

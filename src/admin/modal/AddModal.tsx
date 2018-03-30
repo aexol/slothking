@@ -1,13 +1,12 @@
 import * as React from 'react';
 import { Modal, ModalHeader, ModalBody } from './Modal';
-import { Form, FieldDefinition  } from '@aexol/slothking-form';
+import { Form, FieldDefinition } from '@aexol/slothking-form';
 import { ModalInterface } from './Modal';
 import * as styles from './FormComponents.css';
 
-interface AddModalInterface extends ModalInterface {
+export interface AddModalInterface extends ModalInterface {
   fields: Array<FieldDefinition>;
-  onAdd:Function;
-  initialData?: Object;
+  onAdd: (e: Object) => void;
 }
 
 class AddModal extends React.Component<AddModalInterface> {
@@ -22,7 +21,7 @@ class AddModal extends React.Component<AddModalInterface> {
             fields={fields.map((f) => ({ ...f, styles }))}
             Submit={() => <input type="submit" value="Add" className={styles.Submit} />}
             validate={(e) => {
-              onAdd(e)
+              onAdd(e);
             }}
           />
         </ModalBody>

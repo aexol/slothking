@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from './Modal';
 import { ModalInterface } from './Modal';
-interface DeleteModalInterface extends ModalInterface {
-  onDelete: Function;
+export interface DeleteModalInterface extends ModalInterface {
+  onDelete: (id:number) => void;
   warning?: string;
 }
 

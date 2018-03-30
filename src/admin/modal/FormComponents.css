@@ -63,39 +63,6 @@
   position: relative;
   color: var(--syncano-admin-color-five);
 }
-.MultiSelect .holder-select .holder-value {
-  border: 1px solid var(--syncano-admin-color-two);
-  min-height: 48px;
-  margin-bottom: 10px;
-}
-
-.MultiSelect .holder-select .holder-value .show-value {
-  padding: 8px 15px;
-  background: var(--syncano-admin-color-four);
-  color: var(--syncano-admin-color-one);
-  border: 0;
-  font-weight: 300;
-}
-
-.MultiSelect .holder-select .holder-value .show-value .delete:hover {
-  color: var(--syncano-admin-color-seven);
-}
-
-.MultiSelect .holder-select .holder-value .placeholder-value {
-  color: var(--syncano-admin-color-two);
-  height: 100%;
-  line-height: 36px;
-  padding: 5px 10px;
-}
-
-.MultiSelect .holder-values {
-  top: 48px;
-}
-
-.MultiSelect .holder-values .select-value:hover {
-  background: var(--syncano-admin-color-five);
-}
-
 .Tag {
   margin: 0;
 }

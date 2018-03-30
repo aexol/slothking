@@ -4,11 +4,9 @@ import { Modal, ModalHeader, ModalBody } from './Modal';
 import { ModalInterface } from './Modal';
 import * as styles from './FormComponents.css';
 
-interface UpdateModalInterface extends ModalInterface {
+export interface UpdateModalInterface extends ModalInterface {
   fields: Array<FieldDefinition>;
-  onUpdate: Function;
-  initialData?: Object;
-  warning?: string;
+  onUpdate: (id: number, e: Object) => void;
 }
 
 class UpdateModal extends React.Component<UpdateModalInterface> {
@@ -23,7 +21,7 @@ class UpdateModal extends React.Component<UpdateModalInterface> {
             fields={fields.map((f) => ({ ...f, styles }))}
             Submit={() => <input type="submit" value="Edit" className={styles.Submit} />}
             validate={(e) => {
-              onUpdate(values.id,e)
+              onUpdate(values.id, e);
             }}
             values={values}
           />

@@ -5,19 +5,19 @@
   margin: 10px 0 15px;
   width: 100% !important;
 }
-.holderSelect {
+.MultiSelect .holderSelect {
   font-size: 12px;
   width: 100%;
 }
-.SelectArrow {
+.MultiSelect .SelectArrow {
   border-color: var(--syncano-admin-color-one) transparent transparent;
 }
-.holderValue {
+.MultiSelect .holderValue {
   border: 1px solid var(--syncano-admin-color-one);
   width: 100%;
   min-height: 40px;
 }
-.placeholderValue {
+.MultiSelect .placeholderValue {
   font-size: 15px;
   letter-spacing: 1.2px;
   font-weight: 300;
@@ -25,7 +25,7 @@
   box-sizing: border-box;
   color: var(--syncano-admin-color-one);
 }
-.showValue {
+.MultiSelect .showValue {
   color: var(--syncano-admin-color-one);
   background: var(--syncano-admin-color-four);
   border: 1px solid var(--syncano-admin-color-four);
@@ -33,17 +33,17 @@
   font-weight: 300;
   padding: 8px 15px;
 }
-.Delete:hover {
+.MultiSelect .Delete:hover {
   color: var(--syncano-admin-color-seven);
 }
-.holderValues {
+.MultiSelect .holderValues {
   background: var(--syncano-admin-color-five);
   border-color: none;
 }
-.selectValue {
+.MultiSelect .selectValue {
   font-weight: 300;
 }
-.selectValue:hover {
+.MultiSelect .selectValue:hover {
   background: var(--syncano-admin-color-one);
   color: var(--syncano-admin-color-five);
 }

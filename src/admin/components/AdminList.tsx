@@ -3,30 +3,39 @@ import ModalSet from '../modal/ModalSet';
 import * as styles from './List.css';
 import * as multiSelectStyles from './MultiSelect.css';
 import { MultiSelect, filterRules } from '@aexol/slothking-form';
+import { syncanoRelations } from '../../syncano/formMappings';
 class List extends React.Component<
   {
     model: Array<any>;
     schema: any;
     references: Array<any>;
-    onAdd:Function;
-    onDelete:Function;
-    onUpdate:Function;
+    onAdd: (e: Object) => Promise<void>;
+    onUpdate: (id: number, e: Object) => Promise<void>;
+    onDelete: (id: number) => Promise<void>;
   },
   any
 > {
   state = {
     filtr: [],
     activeFilters: [],
-    search: '',
     open: '',
     values: {},
-    display: { value: 'id' }
+    display: 'id'
   };
   componentWillMount() {
     const { schema } = this.props;
     this.setState({
-      display: { value: schema.display, label: schema.display }
+      display: schema.display
     });
+  }
+  componentWillReceiveProps(props) {
+    if (props.model !== this.props.model) {
+      this.setState({
+        display: props.schema.display,
+        activeFilters: [],
+        open:''
+      });
+    }
   }
   render() {
     const { model, schema, references, onAdd, onDelete, onUpdate } = this.props;
@@ -36,35 +45,11 @@ class List extends React.Component<
     }
     let renderedObjects = model;
     let filterKeys = Object.keys(filtr).filter((f) =>
-      this.state.activeFilters.find((a) => a.value === f)
+      this.state.activeFilters.find((a) => a === f)
     );
     console.log(references);
     let fields = schema.fields;
-    fields = fields.map((f) => {
-      let { filter_index, ...field } = f;
-      if (['relation', 'reference'].indexOf(f.type) !== -1) {
-        field = {
-          ...field,
-          type: 'select',
-          values: references
-            .find((r) => r.name === field.target)
-            .objects.map((o) => ({ label: o.name, value: o.id }))
-        };
-      }
-      if (f.type === 'geopoint') {
-        field = {
-          ...field,
-          type: 'object'
-        };
-      }
-      if (f.type === 'array' && values[f.name]) {
-        values = {
-          ...values,
-          [f.name]: values[f.name].map((v) => ({ label: v, value: v }))
-        };
-      }
-      return field;
-    });
+    fields = syncanoRelations({ fields, models: references });
     if (filterKeys.length) {
       for (var f of filterKeys) {
         renderedObjects = filterRules({
@@ -81,7 +66,7 @@ class List extends React.Component<
           <div className={styles.SyncanoMultiSelects}>
             <div className={styles.MultiSelectSearchFields}>
               {schema.fields
-                .filter((f) => this.state.activeFilters.find((a) => a.value === f.name))
+                .filter((f) => this.state.activeFilters.find((a) => a === f.name))
                 .map((f) => (
                   <input
                     key={f.name}
@@ -106,6 +91,7 @@ class List extends React.Component<
               multi={true}
               value={this.state.activeFilters}
               onChange={(activeFilters) => {
+                console.log(activeFilters);
                 this.setState({
                   activeFilters
                 });
@@ -114,6 +100,7 @@ class List extends React.Component<
             />
             <MultiSelect
               onChange={(e) => {
+                console.log(e);
                 this.setState({
                   display: e,
                   search: ''
@@ -163,7 +150,7 @@ class List extends React.Component<
                   });
                 }}
               >
-                {display ? m[display.value] || m.id : m.id}
+                {display ? m[display] || m.id : m.id}
               </div>
             </div>
           ))}
@@ -178,9 +165,27 @@ class List extends React.Component<
               open: o
             });
           }}
-          onAdd={onAdd}
-          onUpdate={onUpdate}
-          onDelete={onDelete}
+          onAdd={(e) => {
+            onAdd(e).then((r) => {
+              this.setState({
+                open: ''
+              });
+            });
+          }}
+          onUpdate={(id, e) => {
+            onUpdate(id, e).then((r) => {
+              this.setState({
+                open: ''
+              });
+            });
+          }}
+          onDelete={(id) => {
+            onDelete(id).then((r) => {
+              this.setState({
+                open: ''
+              });
+            });
+          }}
         />
       </div>
     );

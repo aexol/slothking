@@ -4,11 +4,28 @@ import * as styles from './Admin.css';
 import List from './List';
 import * as classnames from 'classnames';
 import { PreloaderScreen } from './PreloaderScreen';
-import { withStore, socket, actions, syncano, logOut, validate, StoreProps } from '../syncano';
+import { withStore, socket, actions, logOut, validate, StoreProps } from '../syncano';
 import { Model } from './Model';
 import { Login } from './components/Login';
 import { Arrow } from './components/Arrow';
-class SyncanoAdmin extends React.Component<RouteComponentProps<any> & StoreProps, any> {
+
+export type SyncanoAdminProps = {
+  rest: {
+    models: Array<{
+      name: string;
+      display: string;
+      exclude?: Array<string>;
+      hide?: boolean;
+    }>;
+  };
+};
+
+class SyncanoAdmin extends React.Component<
+  RouteComponentProps<any> & StoreProps & SyncanoAdminProps,
+  {
+    showCategories: boolean;
+  }
+> {
   state = {
     showCategories: null
   };
@@ -20,7 +37,7 @@ class SyncanoAdmin extends React.Component<RouteComponentProps<any> & StoreProps
         modelsToGet.map((m) =>
           actions
             .restFrameworkList({ model: m.name })
-            .then((objects) => ({ objects, name: m.name }))
+            .then((objects) => ({ objects, name: m.name, display: m.display }))
         )
       );
       store.set('models')(models);
@@ -33,11 +50,12 @@ class SyncanoAdmin extends React.Component<RouteComponentProps<any> & StoreProps
     }
   };
   onValid = (value) => {
+    const { rest } = this.props;
     if (value) {
       socket(
         actions.restFrameworkSchema({}).then((schema) => {
           return {
-            schema: syncano.rest.models.map((m) => {
+            schema: rest.models.map((m) => {
               let { fields, name } = schema.find((s) => s.name === m.name);
               if (m.exclude) {
                 fields = fields.filter((f) => !m.exclude.find((e) => e === f.name));
@@ -61,12 +79,12 @@ class SyncanoAdmin extends React.Component<RouteComponentProps<any> & StoreProps
     validate();
   }
   render() {
-    const { store, match } = this.props;
+    const { store, match, rest } = this.props;
     const models = store.get('models');
     const schema = store.get('schema');
     const valid = store.get('valid');
     const { showCategories } = this.state;
-    if (!valid) {
+    if (valid === false) {
       return (
         <div className={styles.SyncanoAdmin}>
           <Login />
@@ -108,7 +126,7 @@ class SyncanoAdmin extends React.Component<RouteComponentProps<any> & StoreProps
           </div>
           <div className={styles.Models}>
             <div className={styles.SyncanoCategoryTitle}>Models</div>
-            {models.map((m) => (
+            {rest.models.filter((m) => !m.hide).map((m) => (
               <Link
                 key={m.name}
                 to={`${match.url}/manage/${m.name}`}
@@ -117,12 +135,6 @@ class SyncanoAdmin extends React.Component<RouteComponentProps<any> & StoreProps
                 {m.name}
               </Link>
             ))}
-          </div>
-          <div className={styles.Settings}>
-            <div className={styles.SyncanoCategoryTitle}>Tools</div>
-            <Link to={`${match.url}/model`} className={styles.SyncanoCategory}>
-              Model
-            </Link>
           </div>
           <div className={[styles.SyncanoCategory, styles.LogOut].join(' ')} onClick={logOut}>
             log out
@@ -138,6 +150,4 @@ class SyncanoAdmin extends React.Component<RouteComponentProps<any> & StoreProps
     );
   }
 }
-export default withStore('auth', 'valid', 'models')(withRouter(SyncanoAdmin) as React.ComponentType<
-  StoreProps
->);
+export default withStore('auth', 'valid', 'models')(withRouter(SyncanoAdmin));

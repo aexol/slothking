@@ -10,9 +10,9 @@ interface ModalSetInterface extends ModalInterface {
   fields: Array<FieldDefinition>;
   open: string;
   toggle: Function;
-  onAdd: Function;
-  onUpdate: Function;
-  onDelete: Function;
+  onAdd: (e: Object) => void;
+  onUpdate: (id: number, e: Object) => void;
+  onDelete: (id:number) => void;
   values?: Object;
   initialDataAdd?: Object;
   initialDataUpdate?: Object;
@@ -30,8 +30,6 @@ class ModalSet extends React.Component<ModalSetInterface> {
       values,
       open,
       toggle,
-      initialDataAdd,
-      initialDataUpdate,
       onAdd,
       onUpdate,
       onDelete
@@ -46,7 +44,6 @@ class ModalSet extends React.Component<ModalSetInterface> {
       <div className="ModalSet">
         <AddModal
           fields={fields}
-          initialData={initialDataAdd}
           isOpen={open === 'add'}
           name={name}
           text={addText}
@@ -55,7 +52,6 @@ class ModalSet extends React.Component<ModalSetInterface> {
         />
         <UpdateModal
           fields={fields}
-          initialData={initialDataUpdate}
           isOpen={open === 'update'}
           name={name}
           text={updateText}

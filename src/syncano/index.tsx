@@ -16,13 +16,6 @@ type Login = {
 type SyncanoSettings = {
   instance: string;
   app: string;
-  rest: {
-    models?: Array<{
-      name: string;
-      display?: string;
-      exclude?: Array<string>;
-    }>;
-  };
 };
 export const syncano: SyncanoSettings = syncanoSettings;
 export type SyncanoStore = {
@@ -74,7 +67,7 @@ Object.keys(allCookies)
   });
 export const withStore = connect(store);
 
-export const socket = (fn) =>
+export const socket = (fn):Promise<void> =>
   new Promise((resolve?, reject?) => {
     let func = fn;
     if (!(fn instanceof Promise)) {
