@@ -7,3 +7,4 @@ build
 dist
 package-lock.json
 generated.js
+generated.ts
