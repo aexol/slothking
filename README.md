@@ -1,8 +1,8 @@
 # Frontend Boilerplate for Sloths
 
-
-
 Zzzzz... 
+
+😴 Blazing fast website development platform for lazy but talented js/ts sloths 
 
 ## Contains
 
