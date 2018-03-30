@@ -1,0 +1,7 @@
+.Model {
+  flex: 1;
+  display: flex;
+  flex-flow: column nowrap;
+  pointer-events: none;
+  background: #aaa;
+}

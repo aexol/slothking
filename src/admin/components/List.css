@@ -1,0 +1,169 @@
+@import url(../varsSyncano.css);
+.ChooseModel {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  padding-top: 100px;
+  justify-content: center;
+  text-transform: uppercase;
+  color: var(--syncano-admin-color-seven);
+  font-size: 20px;
+}
+
+.SyncanoManage {
+  background: var(--syncano-admin-color-one);
+  flex:1;
+}
+.SyncanoManage .SyncanoFilters {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  background: var(--syncano-admin-color-two);
+  color: var(--syncano-admin-color-one);
+  padding: 20px 20px 20px 40px;
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.5), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
+}
+.SyncanoManage .SyncanoFilters .AddButton {
+  min-width: 100px;
+  min-height: 100px;
+  background: var(--syncano-admin-color-five);
+  position: relative;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.SyncanoManage .SyncanoFilters .AddButton .Horizontal {
+  transition: var(--transition);
+  width: 50px;
+  height: 2px;
+  background: var(--syncano-admin-color-one);
+  position: absolute;
+  top: 49px;
+  left: 25px;
+}
+.SyncanoManage .SyncanoFilters .AddButton .Vertical {
+  transition: var(--transition);
+  width: 2px;
+  height: 50px;
+  background: var(--syncano-admin-color-one);
+  position: absolute;
+  top: 25px;
+  left: 49px;
+}
+.SyncanoManage .SyncanoFilters .SyncanoMultiSelects {
+  width: 100%;
+  padding-right: 20px;
+}
+.SyncanoManage .SyncanoFilters .MultiSelectSearchFields {
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}
+.SyncanoManage .SyncanoFilters .MultiSelectSearchFields input {
+  box-sizing: border-box;
+  border: 1px solid var(--syncano-admin-color-one);
+  background: none;
+  color: var(--syncano-admin-color-four);
+  padding: 10px 20px;
+  margin: 0 10px 10px 0;
+  width: 195px;
+  font-weight: 500;
+  font-size: 15px;
+  -webkit-appearance: none;
+  border-radius: 0;
+  box-shadow: none;
+  outline: none;
+}
+@media (max-width: 420px) {
+  .SyncanoManage .SyncanoFilters .MultiSelectSearchFields input {
+    width: 100%;
+    margin-right: 0;
+  }
+}
+.SyncanoManage .SyncanoFilters .MultiSelectSearchFields input::placeholder {
+  color: var(--syncano-admin-color-one);
+  font-weight: 300;
+}
+@media (max-width: 767px) {
+  .SyncanoManage .SyncanoFilters {
+    padding: 20px;
+  }
+  .SyncanoManage .SyncanoFilters .AddButton {
+    min-height: 70px;
+    min-width: 70px;
+  }
+  .SyncanoManage .SyncanoFilters .AddButton .Horizontal {
+    width: 30px;
+    left: 20px;
+    top: 34px;
+  }
+  .SyncanoManage .SyncanoFilters .AddButton .Vertical {
+    height: 30px;
+    top: 20px;
+    left: 34px;
+  }
+}
+@media (max-width: 420px) {
+  .SyncanoManage .SyncanoFilters .AddButton {
+    min-height: 50px;
+    min-width: 50px;
+  }
+  .SyncanoManage .SyncanoFilters .AddButton .Horizontal {
+    width: 25px;
+    left: 12.5px;
+    top: 24px;
+  }
+  .SyncanoManage .SyncanoFilters .AddButton .Vertical {
+    height: 25px;
+    top: 12.5px;
+    left: 24px;
+  }
+}
+
+.SyncanoList {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+  max-height: 100%;
+  overflow: auto;
+  padding: 30px 30px 30px 40px;
+}
+.SyncanoList .SyncanoObject {
+  display: flex;
+  margin-bottom: 10px;
+  border-bottom: var(--syncano-admin-color-two 1px solid);
+  padding: 10px 20px 10px 10px;
+  box-sizing: border-box;
+  color: var(--syncano-admin-color-five);
+}
+.SyncanoList .SyncanoObject .displayName {
+  cursor: pointer;
+  transition: .25s ease-out;
+  font-size: 15px;
+  line-height: 25px;
+}
+.SyncanoList .SyncanoObject .displayName:hover {
+  color: var(--syncano-admin-color-five);
+}
+.SyncanoList .SyncanoObject .deleteButton {
+  cursor: pointer;
+  margin-right: 15px;
+  transition: .25s ease-out;
+  background: var(--syncano-admin-color-two);
+  color: var(--syncano-admin-color-five);
+  font-weight: 300;
+  font-size: 18px;
+  padding: 0 7px;
+  line-height: 25px;
+  max-height: 25px;
+  max-width: 25px;
+  text-align: center;
+}
+.SyncanoList .SyncanoObject .deleteButton:hover {
+  background: var(--syncano-admin-color-five);
+  color: var(--syncano-admin-color-seven);
+}
+@media (max-width: 767px) {
+  .SyncanoList {
+    padding: 30px;
+  }
+}

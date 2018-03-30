@@ -1,0 +1,91 @@
+{
+  "name": "slothking",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A frontend boilerplate with React, Redux and Typescript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "generate-syncano-apis": "sh bin/gen_socket_apis.sh",
+    "start": "npm run generate-syncano-apis && webpack-dev-server --mode development --hot --progress --color --port 3000 --open",
+    "build": "webpack -p --progress --colors",
+    "prettier": "prettier --write \"src/**/*.{ts,tsx,css}\""
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/classnames": "2.2.3",
+    "@types/history": "4.6.2",
+    "@types/json-schema": "^6.0.1",
+    "@types/node": "9.4.6",
+    "@types/react": "16.0.40",
+    "@types/react-dom": "16.0.4",
+    "@types/react-router": "4.0.22",
+    "@types/react-router-dom": "^4.2.5",
+    "@types/webpack": "3.8.8",
+    "@types/webpack-env": "1.13.5",
+    "babel-loader": "^7.1.3",
+    "css-loader": "^0.28.10",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "file-loader": "^1.1.11",
+    "html-loader": "^1.0.0-alpha.0",
+    "html-webpack-plugin": "^3.0.4",
+    "postcss": "^6.0.19",
+    "postcss-browser-reporter": "^0.5.0",
+    "postcss-cssnext": "^3.1.0",
+    "postcss-import": "^11.1.0",
+    "postcss-loader": "^2.1.1",
+    "postcss-reporter": "^5.0.0",
+    "postcss-url": "^7.3.1",
+    "prettier": "^1.11.1",
+    "react-hot-loader": "^4.0.0",
+    "style-loader": "^0.20.2",
+    "ts-loader": "^4.0.0",
+    "typescript": "^2.8.0-dev.20180318",
+    "url-loader": "^1.0.0-beta.0",
+    "webpack": "^4.0.1",
+    "webpack-cleanup-plugin": "^0.5.1",
+    "webpack-cli": "^2.0.10",
+    "webpack-dev-server": "^3.1.0"
+  },
+  "dependencies": {
+    "@aexol/slothking-diagram": "^0.1.3",
+    "@aexol/slothking-form": "^0.1.3",
+    "@syncano/client": "^0.8.0",
+    "classnames": "^2.2.5",
+    "js-cookie": "^2.2.0",
+    "moment": "^2.21.0",
+    "react": "^16.2.0",
+    "react-datetime": "^2.14.0",
+    "react-dom": "^16.2.0",
+    "react-json-edit": "^0.3.1",
+    "react-preloader-icon": "^0.1.1",
+    "react-router-dom": "^4.2.2",
+    "storm-react-diagrams": "^5.1.1",
+    "undux": "^3.2.1",
+    "utility-types": "^1.1.0"
+  },
+  "syncano": {
+    "instance": "dawn-hill-4437",
+    "app": "czynne24",
+    "apiJs": "src/syncano/generator/generated.ts",
+    "rest": {
+      "models": [
+        {
+          "name": "propertytype",
+          "display": "name"
+        },
+        {
+          "name": "services",
+          "display": "title",
+          "exclude": [
+            "locations",
+            "region",
+            "property_types",
+            "status",
+            "geo_location"
+          ]
+        }
+      ]
+    }
+  }
+}

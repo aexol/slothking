@@ -1,0 +1,144 @@
+@import url(./varsSyncano.css);
+.SyncanoAdmin {
+  /* background: url(./images/backgroundAdmin.jpg) center center no-repeat; */
+  background-position: cover;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  font-family: 'Roboto', sans-serif;
+}
+.SyncanoAdmin.ContentAdmin {
+  background: var(--syncano-admin-color-one);
+}
+.open-categories {
+  display: none;
+}
+.SyncanoCategories {
+  display: block;
+  min-width: 230px;
+  background: var(--syncano-admin-color-five);
+  color: var(--syncano-admin-color-one);
+  box-sizing: border-box;
+  position: fixed;
+  z-index: 9;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+}
+.SyncanoCategories .SyncanoLogoCompany p {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 15px;
+  font-weight: 300;
+  padding-top: 10px;
+  letter-spacing: 1.5px;
+  font-family: 'Roboto';
+}
+.SyncanoCategories .SyncanoLogoCompany img {
+  display: block;
+  width: 220px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.SyncanoCategories .Models,
+.SyncanoCategories .Settings {
+  display: flex;
+  flex-flow: column nowrap;
+}
+.SyncanoCategories .Models {
+  background: var(--syncano-admin-color-two);
+  padding: 10px 0;
+}
+.SyncanoCategories .Settings {
+  background: var(--syncano-admin-color-two);
+  padding: 10px 0;
+}
+.SyncanoCategories .SyncanoCategoryTitle {
+  font-weight: 700;
+  color: var(--syncano-admin-color-five);
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+  padding: 15px 30px;
+}
+.SyncanoCategories .SyncanoCategory {
+  padding: 15px 30px;
+  color: var(--syncano-admin-color-four);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'Roboto', sans-serif;
+  transition: 0.35s ease-out;
+  letter-spacing: 1.2px;
+  cursor: pointer;
+  position: relative;
+}
+.SyncanoCategories .SyncanoCategory.LogOut {
+  color: var(--syncano-admin-color-one);
+  font-weight: 300;
+}
+.SyncanoCategories .SyncanoCategory.LogOut:hover {
+  background: var(--syncano-admin-color-one);
+  color: var(--syncano-admin-color-five);
+  font-weight: 500;
+}
+.SyncanoCategories .SyncanoCategory:hover {
+  background: var(--syncano-admin-color-one);
+  color: var(--syncano-admin-color-five);
+}
+.SyncanoCategories .SyncanoCategory:hover::before {
+  z-index: -1;
+  position: absolute;
+  content: '';
+  bottom: 15px;
+  left: 10px;
+  width: 50%;
+  top: 80%;
+  max-width: 100%;
+  background: var(--syncano-admin-color-four);
+  box-shadow: 0 15px 10px var(--syncano-admin-color-four);
+  transform: rotate(-3deg);
+}
+.SyncanoContainer {
+  padding-left: 230px;
+  width: 100%;
+  flex:1;
+  display: flex;
+}
+@media (max-width: 767px) {
+  .SyncanoCategories {
+    display: none;
+  }
+  .SyncanoCategories.show-categories {
+    display: block;
+    padding-top: 45px;
+  }
+  .open-categories {
+    background: var(--syncano-admin-color-five);
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+    transition: 0.35s ease-out;
+  }
+  .open-categories.arrow-toggle {
+    transform: rotate(180deg);
+    left: 180px;
+  }
+  .SyncanoContainer {
+    padding-left: 0;
+  }
+}
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+}

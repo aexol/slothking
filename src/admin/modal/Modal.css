@@ -1,0 +1,102 @@
+@import url(../varsSyncano.css);
+.Modal {
+  display: none;
+  position: fixed;
+  z-index: 20;
+  right: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.7);
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.Modal.open {
+  display: flex;
+}
+
+.Modal .Dialog {
+  display: flex;
+  flex-flow: row nowrap;
+  overflow: auto;
+  flex: 1;
+  margin: 30px 60px;
+  background: var(--syncano-admin-color-one);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  max-width: 1000px;
+}
+
+.ModalHeader {
+  min-width: 320px;
+  padding: 20px;
+  background: var(--syncano-admin-color-five);
+  color: var(--syncano-admin-color-one);
+  font-weight: lighter;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.ModalHeader .Close {
+  margin-right: auto;
+  width: 36px;
+  height: 36px;
+  line-height: 24px;
+  border: solid 1px;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.35s ease-out;
+}
+
+.ModalHeader .Close div {
+  margin-bottom: 5px;
+}
+
+.ModalHeader .Close:hover {
+  color: var(--syncano-admin-color-seven);
+}
+
+.ModalHeader span {
+  margin-top: 36px;
+  line-height: 64px;
+  font-size: 36px;
+  text-align: center;
+}
+
+.ModalBody {
+  flex: 1;
+  overflow-y: auto;
+  padding: 30px;
+}
+
+@media (max-width: 1023px) {
+  .ModalHeader {
+    min-width: 250px;
+  }
+  .ModalHeader span {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 767px) {
+  .Dialog {
+    flex-direction: column;
+    margin: 30px;
+  }
+  .ModalHeader span {
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 420px) {
+  .Dialog {
+    margin: 20px;
+  }
+  .ModalHeader span {
+    font-size: 26px;
+  }
+}
