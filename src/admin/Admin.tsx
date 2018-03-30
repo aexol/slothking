@@ -100,6 +100,7 @@ class SyncanoAdmin extends React.Component<
     if (models.length !== schema.length) {
       return <PreloaderScreen size={64} text="Loading models..." />;
     }
+    console.log(models)
     return (
       <div className={[styles.SyncanoAdmin, styles.ContentAdmin].join(' ')}>
         <div

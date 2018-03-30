@@ -4,6 +4,7 @@ import * as styles from './List.css';
 import * as multiSelectStyles from './MultiSelect.css';
 import { MultiSelect, filterRules } from '@aexol/slothking-form';
 import { syncanoRelations } from '../../syncano/formMappings';
+
 class List extends React.Component<
   {
     model: Array<any>;
@@ -20,7 +21,7 @@ class List extends React.Component<
     activeFilters: [],
     open: '',
     values: {},
-    display: 'id'
+    display: null
   };
   componentWillMount() {
     const { schema } = this.props;
@@ -33,7 +34,7 @@ class List extends React.Component<
       this.setState({
         display: props.schema.display,
         activeFilters: [],
-        open:''
+        open: ''
       });
     }
   }
@@ -44,22 +45,32 @@ class List extends React.Component<
       return <div className={styles.ChooseModel}>Choose a model</div>;
     }
     let renderedObjects = model;
-    let filterKeys = Object.keys(filtr).filter((f) =>
-      this.state.activeFilters.find((a) => a === f)
-    );
-    console.log(references);
-    let fields = schema.fields;
-    fields = syncanoRelations({ fields, models: references });
-    if (filterKeys.length) {
-      for (var f of filterKeys) {
-        renderedObjects = filterRules({
-          value: filtr[f],
-          values: renderedObjects,
-          name: f,
-          type: schema.fields.find((field) => field.name === f).type
-        });
+    if (filtr) {
+      let filterKeys = Object.keys(filtr).filter((f) =>
+        this.state.activeFilters.find((a) => a === f)
+      );
+      if (filterKeys.length) {
+        for (var f of filterKeys) {
+          renderedObjects = filterRules({
+            value: filtr[f],
+            values: renderedObjects,
+            name: f,
+            type: schema.fields.find((field) => field.name === f).type
+          });
+        }
       }
     }
+    let fields = schema.fields;
+    fields = syncanoRelations({ fields, models: references });
+
+    let filterFields = [{ label: 'id', value: 'id' }];
+    filterFields = [
+      ...filterFields,
+      ...schema.fields.filter((f) => f.type === 'string' || f.type === 'text').map((f) => ({
+        label: f.name,
+        value: f.name
+      }))
+    ];
     return (
       <div className={styles.SyncanoManage}>
         <div className={styles.SyncanoFilters}>
@@ -85,15 +96,13 @@ class List extends React.Component<
             </div>
             <MultiSelect
               styles={multiSelectStyles}
-              options={schema.fields
-                .filter((f) => f.type === 'string')
-                .map((f) => ({ label: f.name, value: f.name }))}
+              options={filterFields}
               multi={true}
               value={this.state.activeFilters}
               onChange={(activeFilters) => {
                 console.log(activeFilters);
                 this.setState({
-                  activeFilters
+                  activeFilters: activeFilters || []
                 });
               }}
               placeholder="Filter by.."
@@ -109,10 +118,7 @@ class List extends React.Component<
               styles={multiSelectStyles}
               placeholder="Display"
               value={display}
-              options={schema.fields.filter((f) => f.type === 'string').map((f) => ({
-                label: f.name,
-                value: f.name
-              }))}
+              options={filterFields}
             />
           </div>
           <div

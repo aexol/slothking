@@ -15,19 +15,32 @@ class Root extends React.Component {
                   rest={{
                     models: [
                       {
-                        name: 'advert',
-                        display: 'url',
-                        exclude: ['impressions']
+                        name: 'category',
+                        display: 'name'
                       },
                       {
-                        name: 'league',
-                        display: 'name',
-                        hide: true
+                        name: 'subcategory',
+                        display: 'title'
                       },
                       {
-                        name: 'team',
-                        display: 'name',
-                        hide: true
+                        name:'task',
+                        display:'value'
+                      },
+                      {
+                        name:'option',
+                        display:'id'
+                      },
+                      {
+                        name:'suboption',
+                        display:'value'
+                      },
+                      {
+                        name:'flashcard',
+                        display:'value'
+                      },
+                      {
+                        name:'flashoption',
+                        display:'value'
                       }
                     ]
                   }}
