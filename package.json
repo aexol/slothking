@@ -12,6 +12,7 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@aexol/slothking-syncano-api": "^0.1.8",
     "@types/classnames": "2.2.3",
     "@types/history": "4.6.2",
     "@types/json-schema": "^6.0.1",
@@ -47,12 +48,10 @@
     "webpack-dev-server": "^3.1.0"
   },
   "dependencies": {
-    "@aexol/slothking-admin": "file:../libs/packages/admin",
-    "@aexol/slothking-components": "file:../libs/packages/components",
-    "@aexol/slothking-diagram": "file:../libs/packages/diagram",
-    "@aexol/slothking-form": "file:../libs/packages/form",
-    "@aexol/slothking-modeller": "file:../libs/packages/modeller",
-    "@aexol/slothking-syncano": "file:../libs/packages/syncano",
+    "@aexol/slothking-admin": "^0.1.7",
+    "@aexol/slothking-components": "^0.1.8",
+    "@aexol/slothking-form": "^0.1.11",
+    "@aexol/slothking-syncano": "^0.1.9",
     "@syncano/client": "^0.8.0",
     "classnames": "^2.2.5",
     "moment": "^2.21.0",

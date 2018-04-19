@@ -16,8 +16,8 @@ const renderFunc = (Component:React.ComponentType<any>) =>
 renderFunc(Root)
 
 if (module.hot) {
-  module.hot.accept('./containers/Root', () => {
-    const NewRoot = require('./containers/Root').default
+  module.hot.accept('./app/Root', () => {
+    const NewRoot = require('./app/Root').default
     renderFunc(NewRoot)
   })
 }
