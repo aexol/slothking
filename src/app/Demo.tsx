@@ -1,6 +1,7 @@
 import * as React from 'react';
-import {Form} from '@aexol/slothking-form';
+import { Form } from '../outlibs/form';
 import { withStore, StoreProps } from '../syncano';
+
 
 class Home extends React.Component<StoreProps, any> {
   state = {
@@ -57,6 +58,7 @@ class Home extends React.Component<StoreProps, any> {
             {
               type: 'select',
               name: 'reference',
+              value: 1,
               values: [
                 {
                   value: 1,
@@ -75,7 +77,8 @@ class Home extends React.Component<StoreProps, any> {
             {
               type: 'select',
               name: 'relation',
-              multi:true,
+              multi: true,
+              value: [1],
               values: [
                 {
                   value: 1,

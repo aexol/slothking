@@ -8,7 +8,7 @@ var outPath = path.join(__dirname, './dist');
 
 // plugins
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 var WebpackCleanupPlugin = require('webpack-cleanup-plugin');
 
 module.exports = {
@@ -24,7 +24,7 @@ module.exports = {
   },
   target: 'web',
   resolve: {
-    extensions: ['.js','.jsx', '.ts', '.tsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
     // Fix webpack's default behavior to not load packages with jsnext:main module
     // (jsnext:main directs not usually distributable es6 format, but es6 sources)
     mainFields: ['module', 'browser', 'main'],
@@ -44,35 +44,35 @@ module.exports = {
       // css
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-              query: {
-                modules: true,
-                sourceMap: !isProduction,
-                importLoaders: 1,
-                localIdentName: '[local]__[hash:base64:5]'
-              }
-            },
-            {
-              loader: 'postcss-loader',
-              options: {
-                ident: 'postcss',
-                plugins: [
-                  require('postcss-import')({ addDependencyTo: webpack }),
-                  require('postcss-url')(),
-                  require('postcss-cssnext')(),
-                  require('postcss-reporter')(),
-                  require('postcss-browser-reporter')({
-                    disabled: isProduction
-                  })
-                ]
-              }
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader
+          },
+          {
+            loader: 'css-loader',
+            query: {
+              modules: true,
+              sourceMap: !isProduction,
+              importLoaders: 1,
+              localIdentName: '[local]__[hash:base64:5]'
             }
-          ]
-        })
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: [
+                require('postcss-import')({ addDependencyTo: webpack }),
+                require('postcss-url')(),
+                require('postcss-cssnext')(),
+                require('postcss-reporter')(),
+                require('postcss-browser-reporter')({
+                  disabled: isProduction
+                })
+              ]
+            }
+          }
+        ]
       },
       // static assets
       { test: /\.html$/, use: 'html-loader' },
@@ -103,9 +103,9 @@ module.exports = {
       DEBUG: false
     }),
     new WebpackCleanupPlugin(),
-    new ExtractTextPlugin({
-      filename: 'styles.css',
-      disable: !isProduction
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css'
     }),
     new HtmlWebpackPlugin({
       template: 'assets/index.html'
