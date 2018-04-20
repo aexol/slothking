@@ -7,12 +7,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --mode development --hot --progress --color --port 1410 --open",
+    "slothking-update":"npm add @aexol/slothking-form @aexol/slothking-admin @aexol/slothking-diagram @aexol/slothking-components @aexol/slothking-syncano",
     "build": "webpack -p --progress --colors",
     "prettier": "prettier --write \"src/**/*.{ts,tsx,css}\""
   },
   "license": "MIT",
   "devDependencies": {
-    "@aexol/slothking-syncano-api": "^0.1.8",
+    "@aexol/slothking-syncano-api": "^0.1.9",
     "@types/classnames": "2.2.3",
     "@types/history": "4.6.2",
     "@types/json-schema": "^6.0.1",
@@ -48,10 +49,11 @@
     "webpack-dev-server": "^3.1.0"
   },
   "dependencies": {
-    "@aexol/slothking-admin": "^0.1.7",
-    "@aexol/slothking-components": "^0.1.8",
-    "@aexol/slothking-form": "^0.1.11",
-    "@aexol/slothking-syncano": "^0.1.9",
+    "@aexol/slothking-admin": "^0.1.16",
+    "@aexol/slothking-components": "^0.1.10",
+    "@aexol/slothking-diagram": "^0.1.14",
+    "@aexol/slothking-form": "^0.1.13",
+    "@aexol/slothking-syncano": "^0.1.11",
     "@syncano/client": "^0.8.0",
     "classnames": "^2.2.5",
     "moment": "^2.21.0",
