@@ -49,11 +49,11 @@
     "webpack-dev-server": "^3.1.0"
   },
   "dependencies": {
-    "@aexol/slothking-admin": "^0.1.17",
-    "@aexol/slothking-components": "^0.1.11",
-    "@aexol/slothking-diagram": "^0.1.15",
-    "@aexol/slothking-form": "^0.1.14",
-    "@aexol/slothking-syncano": "^0.1.20",
+    "@aexol/slothking-admin": "^0.1.19",
+    "@aexol/slothking-components": "^0.1.13",
+    "@aexol/slothking-diagram": "^0.1.17",
+    "@aexol/slothking-form": "^0.1.16",
+    "@aexol/slothking-syncano": "^0.1.26",
     "@syncano/client": "^0.8.0",
     "classnames": "^2.2.5",
     "moment": "^2.21.0",
