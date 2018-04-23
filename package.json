@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --mode development --hot --progress --color --port 1410 --open",
-    "slothking-update":"npm add @aexol/slothking-form @aexol/slothking-admin @aexol/slothking-diagram @aexol/slothking-components @aexol/slothking-syncano",
+    "slothking-update": "npm add @aexol/slothking-form @aexol/slothking-admin @aexol/slothking-diagram @aexol/slothking-components @aexol/slothking-syncano",
     "build": "webpack -p --progress --colors",
     "prettier": "prettier --write \"src/**/*.{ts,tsx,css}\""
   },
@@ -49,11 +49,11 @@
     "webpack-dev-server": "^3.1.0"
   },
   "dependencies": {
-    "@aexol/slothking-admin": "^0.1.16",
-    "@aexol/slothking-components": "^0.1.10",
-    "@aexol/slothking-diagram": "^0.1.14",
-    "@aexol/slothking-form": "^0.1.13",
-    "@aexol/slothking-syncano": "^0.1.11",
+    "@aexol/slothking-admin": "^0.1.17",
+    "@aexol/slothking-components": "^0.1.11",
+    "@aexol/slothking-diagram": "^0.1.15",
+    "@aexol/slothking-form": "^0.1.14",
+    "@aexol/slothking-syncano": "^0.1.20",
     "@syncano/client": "^0.8.0",
     "classnames": "^2.2.5",
     "moment": "^2.21.0",
@@ -61,7 +61,6 @@
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2",
     "typestyle": "^1.7.2",
-    "undux": "^3.2.1",
     "unstated": "^2.0.2",
     "utility-types": "^1.1.0"
   }
