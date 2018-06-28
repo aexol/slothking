@@ -39,7 +39,7 @@
     "webpack-dev-server": "^3.1.0"
   },
   "dependencies": {
-    "@slothking-online/form": "latest",
+    "@slothking-online/form": "^0.1.18",
     "classnames": "^2.2.5",
     "moment": "^2.21.0",
     "react": "^16.4.1",
