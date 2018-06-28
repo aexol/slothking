@@ -1,16 +1,15 @@
-import * as React from 'react'
-import {Switch, Route} from 'react-router-dom'
-import Home from './Home'
-import * as styles from './App.css'
-class AppContainer extends React.Component<any,any> {
-  render () {
+import * as React from 'react';
+import { Switch, Route } from 'react-router-dom';
+import Home from './Home';
+class AppContainer extends React.Component<any, any> {
+  render() {
     return (
-      <div className={styles.App}>
+      <div>
         <Switch>
-          <Route component={Home} exact path='/' />
+          <Route component={Home} exact path="/" />
         </Switch>
       </div>
-    )
+    );
   }
 }
-export default AppContainer
+export default AppContainer;

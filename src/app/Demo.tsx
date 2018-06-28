@@ -1,32 +1,79 @@
 import * as React from 'react';
-import { Subscribe } from 'unstated';
-import { Auth } from '@aexol/slothking-syncano';
-import { Form } from '@aexol/slothking-form';
-import { PreloaderScreen } from '@aexol/slothking-components';
-
+import { Form } from '@slothking-online/form';
+const opts = [
+  {
+    label: 'Helo',
+    value: 1
+  },
+  {
+    label: 'Helo2',
+    value: 2
+  }
+];
+const opts2 = [
+  {
+    label: 'Helo',
+    value: 1
+  },
+  {
+    label: 'Helo2',
+    value: 2
+  }
+];
 export const Demo = (props) => (
-  <Subscribe to={[Auth]}>
-    {(sync: Auth) => {
-      if (sync.state.valid === false) {
-        return (
-          <Form
-            fields={[
-              { name: 'username', type: 'string' },
-              { type: 'string', name: 'password', inputType: 'password' }
-            ]}
-            validate={sync.login}
-            submitText="Login"
-          />
-        );
-      }
-      if (!sync.state.valid) {
-        return <PreloaderScreen text="Logging in..." />;
-      }
-      return (
-        <div>
-          <button onClick={sync.logout}>Log out</button>
-        </div>
-      );
+  <div
+    style={{
+      margin: 'auto',
+      width: 320,
+      marginTop: 100
     }}
-  </Subscribe>
+  >
+    <Form
+      fields={[
+        {
+          fieldType: 'string',
+          name: 'hello',
+          content: {}
+        },
+        {
+          fieldType: 'select',
+          name: 'selectsingle',
+          content: {
+            placeholder: 'single select',
+            multi: false,
+            options: opts
+          }
+        },
+        {
+          fieldType: 'array',
+          name: 'artest',
+          content: {
+            placeholder: 'ARRAY',
+            unique: true
+          }
+        },
+        {
+          fieldType: 'select',
+          name: 'select',
+          content: {
+            placeholder: 'multi select',
+            multi: true,
+            options: opts2
+          }
+        },
+        {
+          fieldType: 'date',
+          name: 'dat',
+          content: {
+            maxYear: 2030,
+            minYear: new Date().getFullYear()
+          }
+        }
+      ]}
+      validate={(e) => {
+        console.log(e);
+      }}
+      submitText="Login"
+    />
+  </div>
 );
